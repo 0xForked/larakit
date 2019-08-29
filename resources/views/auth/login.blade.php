@@ -69,8 +69,9 @@
             </div>
         </div>
     </div> --}}
+
     <div class="row">
-        <div class="col-md-10 offset-md-1 form-auth mt-3">
+        <div class="col-md-10 offset-md-1 form-auth mt-md-3">
             <div class="row">
                 <div class="col-md-6 d-none d-sm-block">
                     <img class="icon-header" height="230" src="images/illustration_login.png" alt="">

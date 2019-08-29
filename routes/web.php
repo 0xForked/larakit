@@ -21,5 +21,16 @@ Auth::routes([
     'verify' => true
 ]);
 
-Route::get('dashboard/home', 'Dash\HomeController@index')->name('home');
+Route::group([
+    'prefix'=>'dashboard',
+    'as' => 'dash.',
+    'namespace' => 'Dash'
+], function () {
 
+    Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/account', 'AccountController@index')->name('account');
+
+    // Route::get('/users', '')->name('users');
+    // Route::get('/settings', '')->name('settings');
+
+});

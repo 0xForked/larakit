@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Dash;
+namespace App\Http\Controllers\Api\V1\Profile;
 
-use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Auth;
 
-class HomeController extends Controller
+class ProfileController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,6 +25,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dash.home');
+        return response()->json(['user' => Auth::User()]);
     }
 }

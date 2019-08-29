@@ -2,7 +2,7 @@
 
 @section('content')
 <div class="container">
-    <div class="row justify-content-center">
+    {{-- <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Reset Password') }}</div>
@@ -41,6 +41,49 @@
                     </form>
                 </div>
             </div>
+        </div>
+    </div> --}}
+
+    <div class="row">
+        <div class="col-12 col-md-6  form-auth pt-5 mt-md-5 mx-auto">
+            <p class="title-form ml-5">
+                {{ __('Reset Password') }}
+            </p>
+            <p class="subtitle-form ml-5">
+                Lorem ipsum dolor sit amet
+            </p>
+
+            @if (session('status'))
+                <div class="alert alert-success ml-5 mr-5 mt-3" role="alert">
+                    {{ session('status') }}
+                </div>
+            @endif
+
+            <form method="POST" class="pl-5 pr-5" action="{{ route('password.email') }}">
+                @csrf
+                <div class="form-group content-auth">
+                    <input
+                        id="email"
+                        type="email"
+                        class="form-control input-type-primary @error('email') is-invalid @enderror"
+                        name="email"
+                        value="{{ old('email') }}"
+                        required
+                        autocomplete="email"
+                        placeholder="{{ __('E-Mail Address') }}"
+                        autofocus
+                    >
+                    @error('email')
+                        <span class="invalid-feedback" role="alert">
+                            <strong>{{ $message }}</strong>
+                        </span>
+                    @enderror
+                </div>
+
+                <button type="submit" class="btn btn-primary btn-block btn-primary-larakit">
+                    {{ __('Send Password Reset Link') }}
+                </button>
+            </form>
         </div>
     </div>
 </div>

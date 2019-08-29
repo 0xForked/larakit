@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Dash;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 
-class HomeController extends Controller
+class AccountController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,6 +24,6 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('dash.home');
+        return view('dash.profile');
     }
 }

@@ -6,7 +6,14 @@
 
 require('./bootstrap');
 
+
 window.Vue = require('vue');
+
+window.events = new Vue();
+
+window.flash = function (message, level = 'success') {
+    window.events.$emit('flash', { message, level });
+};
 
 /**
  * The following block of code may be used to automatically register your
@@ -20,9 +27,10 @@ window.Vue = require('vue');
 // files.keys().map(key => Vue.component(key.split('/').pop().split('.')[0], files(key).default))
 
 
+Vue.component('dashboard-home', require('./pages/dash/Home.vue').default);
+Vue.component('dashboard-profile', require('./pages/dash/Profile.vue').default);
 
-Vue.component('profile-component', require('./components/ProfileComponent.vue').default);
-Vue.component('setting-component', require('./components/SettingComponent.vue').default);
+Vue.component('flash-message', require('./components/Flash.vue').default);
 
 
 

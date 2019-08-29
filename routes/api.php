@@ -17,9 +17,19 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-
-Route::middleware('auth:api')->get('/users', function (Request $request) {
-
-    return response()->json(['name' => Auth::User()->name]);
-
+Route::group([
+    'prefix' => 'v1',
+    'namespace' => 'Api\V1',
+    'as' => 'api.',
+    'middleware' => 'auth:api'
+], function () {
+    Route::get('/profile', 'Profile\ProfileController@index')->name('profile');
+    Route::post(
+        '/profile/basic-information',
+        'Profile\UpdateBasicInformationController@index'
+    )->name('profile.basic-info');
+    Route::post(
+        '/profile/update-password',
+        'Profile\UpdatePasswordController@index'
+    )->name('profile.password');
 });
