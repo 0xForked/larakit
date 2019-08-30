@@ -12,6 +12,31 @@
                 </a>
             </div>
 
+
+            <div class="item-menu {{ (Request::segment(2) == 'messages') ? '' : 'inactive' }}">
+                <a href="{{ route('dash.messages') }}">
+                    <p class="icon-item-menu">
+                        <i class="far fa-envelope"></i>
+                    </p>
+                </a>
+            </div>
+
+            <div class="item-menu {{ (Request::segment(2) == 'contacts') ? '' : 'inactive' }}">
+                <a href="{{ route('dash.contacts') }}">
+                    <p class="icon-item-menu">
+                        <i class="fas fa-users"></i>
+                    </p>
+                </a>
+            </div>
+
+            <div class="item-menu {{ (Request::segment(2) == 'settings') ? '' : 'inactive' }}">
+                <a href="{{ route('dash.settings') }}">
+                    <p class="icon-item-menu">
+                        <i class="fas fa-cogs"></i>
+                    </p>
+                </a>
+            </div>
+
             <div class="item-menu {{ (Request::segment(2) == 'account') ? '' : 'inactive' }}">
                 <a href="{{ route('dash.account') }}">
                     <p class="icon-item-menu">
@@ -49,9 +74,27 @@
                 </li>
             </a>
 
+            <a href="{{ route('dash.messages') }}">
+                <li class="{{ (Request::segment(2) == 'messages') ? 'active-link' : '' }}">
+                    SMS
+                </li>
+            </a>
+
+            <a href="{{ route('dash.contacts') }}">
+                <li class="{{ (Request::segment(2) == 'contacts') ? 'active-link' : '' }}">
+                    Contacts
+                </li>
+            </a>
+
+            <a href="{{ route('dash.settings') }}">
+                <li class="{{ (Request::segment(2) == 'settings') ? 'active-link' : '' }}">
+                    Settings
+                </li>
+            </a>
+
             <a href="{{ route('dash.account') }}">
                 <li class="{{ (Request::segment(2) == 'account') ? 'active-link' : '' }}">
-                    Account
+                    My Account
                 </li>
             </a>
             <a

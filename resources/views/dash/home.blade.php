@@ -13,7 +13,6 @@
                 </p>
             </div>
         </div>
-
         <dashboard-home></dashboard-home>
     </div>
 @endsection

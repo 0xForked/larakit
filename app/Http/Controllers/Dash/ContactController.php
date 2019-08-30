@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers\Dash;
 
-use App\Models\Setting;
-use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
 
-class AccountController extends Controller
+class ContactController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -25,6 +24,6 @@ class AccountController extends Controller
      */
     public function index()
     {
-        return view('dash.profile');
+        return view('dash.contact');
     }
 }

@@ -2,16 +2,17 @@
 
 @section('content')
     <div class="main-content">
+
         <div class="header row">
             <div class="col-md-12">
                 <p class="header-title">
-                    My Profile
+                    Short Messanging Service
                 </p>
                 <p class="sub-header-title">
-                    Ensure your account is healthy to be used
+                    Latest report updated this week and on
                 </p>
             </div>
         </div>
-        <dashboard-profile></dashboard-profile>
+        <dashboard-message></dashboard-message>
     </div>
 @endsection

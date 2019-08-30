@@ -24,12 +24,24 @@ Route::group([
     'middleware' => 'auth:api'
 ], function () {
     Route::get('/profile', 'Profile\ProfileController@index')->name('profile');
+
     Route::post(
         '/profile/basic-information',
         'Profile\UpdateBasicInformationController@index'
     )->name('profile.basic-info');
+
     Route::post(
         '/profile/update-password',
         'Profile\UpdatePasswordController@index'
     )->name('profile.password');
+
+    Route::get(
+        '/settings',
+        'SettingController@index'
+    )->name('setting');
+
+    Route::post(
+        '/settings/message-autoreply',
+        'SettingController@update'
+    )->name('setting.autoreply');
 });
