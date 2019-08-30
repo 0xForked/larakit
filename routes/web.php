@@ -28,9 +28,6 @@ Route::group([
 ], function () {
 
     Route::get('/', 'HomeController@index')->name('home');
+    Route::get('/messaging', 'MessagingController@index')->name('messaging');
     Route::get('/account', 'AccountController@index')->name('account');
-
-    // Route::get('/users', '')->name('users');
-    // Route::get('/settings', '')->name('settings');
-
 });

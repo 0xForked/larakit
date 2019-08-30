@@ -12,6 +12,14 @@
                 </a>
             </div>
 
+            <div class="item-menu {{ (Request::segment(2) == 'messaging') ? '' : 'inactive' }}">
+                <a href="{{ route('dash.messaging') }}">
+                    <p class="icon-item-menu">
+                        <i class="fas fa-envelope-open-text"></i>
+                    </p>
+                </a>
+            </div>
+
             <div class="item-menu {{ (Request::segment(2) == 'account') ? '' : 'inactive' }}">
                 <a href="{{ route('dash.account') }}">
                     <p class="icon-item-menu">
@@ -49,11 +57,18 @@
                 </li>
             </a>
 
-            <a href="{{ route('dash.account') }}">
-                <li class="{{ (Request::segment(2) == 'account') ? 'active-link' : '' }}">
-                    Account
+            <a href="{{ route('dash.messaging') }}">
+                <li class="{{ (Request::segment(2) == 'messaging') ? 'active-link' : '' }}">
+                    Messaging
                 </li>
             </a>
+
+            <a href="{{ route('dash.account') }}">
+                <li class="{{ (Request::segment(2) == 'account') ? 'active-link' : '' }}">
+                    My Account
+                </li>
+            </a>
+
             <a
                 href="{{ route('logout') }}"
                 onclick="event.preventDefault(); document.getElementById('logout-form').submit();"

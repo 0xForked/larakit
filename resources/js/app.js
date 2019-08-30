@@ -28,6 +28,7 @@ window.flash = function (message, level = 'success') {
 
 
 Vue.component('dashboard-home', require('./pages/dash/Home.vue').default);
+Vue.component('dashboard-messaging', require('./pages/dash/Messaging.vue').default);
 Vue.component('dashboard-profile', require('./pages/dash/Profile.vue').default);
 
 Vue.component('flash-message', require('./components/Flash.vue').default);
