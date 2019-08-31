@@ -35,13 +35,16 @@ Route::group([
         'Profile\UpdatePasswordController@index'
     )->name('profile.password');
 
-    Route::get(
-        '/settings',
-        'SettingController@index'
-    )->name('setting');
+    Route::get('/settings', 'SettingController@index')->name('setting');
 
     Route::post(
         '/settings/message-autoreply',
         'SettingController@update'
     )->name('setting.autoreply');
+
+    Route::get('/messages/inbox', 'Messaging\InboxController@index')->name('messaging.inbox');
+    Route::get('/messages/outbox', 'Messaging\OutboxController@index')->name('messaging.outbox');
+    Route::get('/messages/pending', 'Messaging\PendingController@index')->name('messaging.pending');
+    Route::post('/messages/send', 'Messaging\OutboxController@store')->name('messaging.send');
+
 });

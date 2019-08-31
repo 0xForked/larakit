@@ -29,7 +29,6 @@ Route::group([
 
     Route::get('/', 'HomeController@index')->name('home');
     Route::get('/messages', 'MessageController@index')->name('messages');
-    Route::get('/contacts', 'ContactController@index')->name('contacts');
     Route::get('/settings', 'SettingController@index')->name('settings');
     Route::get('/account', 'AccountController@index')->name('account');
 });

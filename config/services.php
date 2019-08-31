@@ -34,4 +34,10 @@ return [
         'secret' => env('SPARKPOST_SECRET'),
     ],
 
+    'notify' => [
+        'base_uri' => env('API_URL'),
+        'secret' => env('API_TOKEN'),
+        'number' => env('DEVICE_NUMBER')
+    ],
+
 ];

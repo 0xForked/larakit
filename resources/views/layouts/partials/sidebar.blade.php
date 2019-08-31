@@ -21,14 +21,6 @@
                 </a>
             </div>
 
-            <div class="item-menu {{ (Request::segment(2) == 'contacts') ? '' : 'inactive' }}">
-                <a href="{{ route('dash.contacts') }}">
-                    <p class="icon-item-menu">
-                        <i class="fas fa-users"></i>
-                    </p>
-                </a>
-            </div>
-
             <div class="item-menu {{ (Request::segment(2) == 'settings') ? '' : 'inactive' }}">
                 <a href="{{ route('dash.settings') }}">
                     <p class="icon-item-menu">
@@ -77,12 +69,6 @@
             <a href="{{ route('dash.messages') }}">
                 <li class="{{ (Request::segment(2) == 'messages') ? 'active-link' : '' }}">
                     SMS
-                </li>
-            </a>
-
-            <a href="{{ route('dash.contacts') }}">
-                <li class="{{ (Request::segment(2) == 'contacts') ? 'active-link' : '' }}">
-                    Contacts
                 </li>
             </a>
 

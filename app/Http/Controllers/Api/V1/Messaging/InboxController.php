@@ -1,11 +1,12 @@
 <?php
 
-namespace App\Http\Controllers\Dash;
+namespace App\Http\Controllers\Api\V1\Messaging;
 
-use App\Http\Controllers\Controller;
+use App\Models\Gammu\Inbox;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
-class ContactController extends Controller
+class InboxController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -24,6 +25,6 @@ class ContactController extends Controller
      */
     public function index()
     {
-        return view('dash.contact');
+        return response()->json(['inbox' => Inbox::all()]);
     }
 }

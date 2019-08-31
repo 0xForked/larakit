@@ -33,9 +33,6 @@
                         <a class="nav-link" href="#">{{ __('SMS') }}</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">{{ __('Contacts') }}</a>
-                    </li>
-                    <li class="nav-item">
                         <a class="nav-link" href="#">{{ __('Settings') }}</a>
                     </li>
                     <li class="nav-item dropdown">
