@@ -25,6 +25,6 @@ class PendingController extends Controller
      */
     public function index()
     {
-        return response()->json(['pending' => Outbox::all()]);
+        return response()->json(['pending' => Outbox::orderBy('ID', 'DESC')->paginate(5)]);
     }
 }

@@ -9,12 +9,16 @@ trait GammuMessage
 
     public function performSendMessage($phone, $message, $class = '-1', $sender = 'Gammu 1.38.1')
     {
-        $outbox = Outbox::create([
+        return Outbox::create([
             'DestinationNumber' => $phone,
             'TextDecoded' => $message,
             'Class' => $class,
             'CreatorID' => $sender
         ]);
-        return $outbox;
+    }
+
+    public function performSendMultipleMessage($messages)
+    {
+        return Outbox::insert($messages);
     }
 }

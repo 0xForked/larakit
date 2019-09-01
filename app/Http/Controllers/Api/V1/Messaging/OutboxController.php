@@ -29,7 +29,7 @@ class OutboxController extends Controller
      */
     public function index()
     {
-        return response()->json(['outbox' => SentItem::all()]);
+        return response()->json(['outbox' => SentItem::orderBy('ID', 'DESC')->paginate(5)]);
     }
 
     public function store(Request $request)

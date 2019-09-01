@@ -31,7 +31,7 @@
                             role="tab"
                             aria-controls="v-pills-inbox"
                             aria-selected="false"
-                        >Inbox</a>
+                        >Inbox <span class="badge badge-primary">{{inbox.total}}</span></a>
 
                         <a
                             class="nav-link"
@@ -41,7 +41,7 @@
                             role="tab"
                             aria-controls="v-pills-outbox"
                             aria-selected="false"
-                        >Outbox</a>
+                        >Outbox <span class="badge badge-primary">{{outbox.total}}</span></a>
 
                         <a
                             class="nav-link"
@@ -51,7 +51,7 @@
                             role="tab"
                             aria-controls="v-pills-pending"
                             aria-selected="false"
-                        >Pending</a>
+                        >Pending <span class="badge badge-primary">{{pending.total}}</span></a>
                     </div>
                 </div>
             </div>
@@ -113,27 +113,23 @@
                             <table class="table-wisata table-tiketsaya table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Phone</th>
+                                        <th scope="col">From</th>
                                         <th scope="col">Message</th>
                                         <th width="20%">Received At</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="" v-if="inbox.length === 0">
+                                    <tr class="" v-if="inbox.total === 0">
                                         <td
                                             class="lead text-center"
                                         >No data found.</td>
                                     </tr>
                                     <tr
-                                        v-for="(data, key1) in inbox"
+                                        v-for="data in inbox.data"
                                         :key="data.ID"
                                         v-else
                                     >
-                                       <td>
-                                            {{ serialNumber(key1) }}
-                                        </td>
                                         <td>
                                             {{ data.SenderNumber }}
                                         </td>
@@ -149,6 +145,19 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="row mt-5">
+                                <div class="col-6">
+                                    <pagination :data="inbox" @pagination-change-page="fetchInbox">
+                                        <span slot="prev-nav">&lt; Previous</span>
+                                        <span slot="next-nav">Next &gt;</span>
+                                    </pagination>
+                                </div>
+                                <div class="col-6">
+                                    <div class="float-right">
+                                        <button class="btn btn-danger">Clear inbox table</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div
@@ -160,27 +169,23 @@
                             <table class="table-wisata table-tiketsaya table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Phone</th>
+                                        <th scope="col">To</th>
                                         <th scope="col">Message</th>
                                         <th width="20%">Sent At</th>
                                         <th scope="col">Action</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="" v-if="outbox.length === 0">
+                                    <tr class="" v-if="outbox.total === 0">
                                         <td
                                             class="lead text-center"
                                         >No data found.</td>
                                     </tr>
                                     <tr
-                                        v-for="(data, key1) in outbox"
+                                        v-for="data in outbox.data"
                                         :key="data.ID"
                                         v-else
                                     >
-                                        <td>
-                                            {{ serialNumber(key1) }}
-                                        </td>
                                         <td>
                                             {{ data.DestinationNumber }}
                                         </td>
@@ -196,6 +201,19 @@
                                     </tr>
                                 </tbody>
                             </table>
+                            <div class="row mt-5">
+                                <div class="col-6">
+                                    <pagination :data="outbox" @pagination-change-page="fetchOutbox">
+                                        <span slot="prev-nav">&lt; Previous</span>
+                                        <span slot="next-nav">Next &gt;</span>
+                                    </pagination>
+                                </div>
+                                <div class="col-6">
+                                    <div class="float-right">
+                                        <button class="btn btn-danger">Clear outbox table</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div
@@ -206,26 +224,22 @@
                             <table class="table-wisata table-tiketsaya table table-borderless">
                                 <thead>
                                     <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">Phone</th>
+                                        <th scope="col">to</th>
                                         <th scope="col">Message</th>
                                     </tr>
                                 </thead>
                                 <tbody>
-                                    <tr class="" v-if="pending.length === 0">
+                                    <tr class="" v-if="pending.total === 0">
                                         <td
                                             class="lead text-center"
                                         >No data found.</td>
                                     </tr>
                                     <tr
-                                        v-for="(data, key1) in pending"
+                                        v-for="data in pending.data"
                                         :key="data.ID"
                                         class="m-datatable__row"
                                         v-else
                                     >
-                                        <td>
-                                            {{ serialNumber(key1) }}
-                                        </td>
                                         <td>
                                             {{ data.DestinationNumber }}
                                         </td>
@@ -235,6 +249,20 @@
                                     </tr>
                                 </tbody>
                             </table>
+
+                            <div class="row mt-5">
+                                <div class="col-6">
+                                    <pagination :data="pending" @pagination-change-page="fetchPending">
+                                        <span slot="prev-nav">&lt; Previous</span>
+                                        <span slot="next-nav">Next &gt;</span>
+                                    </pagination>
+                                </div>
+                                <div class="col-6">
+                                    <div class="float-right">
+                                        <button class="btn btn-danger">Clear outbox table</button>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -274,26 +302,23 @@
                     flash('Please check your phone number', 'danger')
                 }
             },
-            fetchInbox() {
-                axios.get('/api/v1/messages/inbox').then(response => {
+            fetchInbox(page = 1) {
+                axios.get('/api/v1/messages/inbox?page=' + page).then(response => {
                     this.inbox = response.data.inbox
-                    console.log(this.inbox)
                 }).catch(function () {
                     flash('Could not load inbox message', 'danger')
                 })
             },
-            fetchOutbox() {
-                axios.get('/api/v1/messages/outbox').then(response => {
+            fetchOutbox(page = 1) {
+                axios.get('/api/v1/messages/outbox?page=' + page).then(response => {
                     this.outbox = response.data.outbox
-                    console.log(this.outbox)
                 }).catch(function () {
                     flash('Could not load outbox message', 'danger')
                 })
             },
-            fetchPending() {
-                axios.get('/api/v1/messages/pending').then(response => {
+            fetchPending(page = 1) {
+                axios.get('/api/v1/messages/pending?page=' + page).then(response => {
                     this.pending = response.data.pending
-                    console.log(this.pending)
                 }).catch(function () {
                     flash('Could not load pending message', 'danger')
                 })
@@ -305,9 +330,6 @@
             destroyOutbox(id) {
                 flash('Data dengan id ' + id + ' berhasil dihapus');
                 this.reloadPage()
-            },
-            serialNumber(key) {
-                return key + 1;
             },
             reloadPage() {
                 document.location.href = "/dashboard/messages";

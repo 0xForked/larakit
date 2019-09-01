@@ -34,6 +34,7 @@ Vue.component('dashboard-profile', require('./pages/dash/Profile.vue').default);
 
 Vue.component('flash-message', require('./components/Flash.vue').default);
 
+Vue.component('pagination', require('laravel-vue-pagination'));
 
 
 /**

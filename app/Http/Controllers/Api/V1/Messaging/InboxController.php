@@ -25,6 +25,6 @@ class InboxController extends Controller
      */
     public function index()
     {
-        return response()->json(['inbox' => Inbox::all()]);
+        return response()->json(['inbox' => Inbox::orderBy('ID', 'DESC')->paginate(5)]);
     }
 }
